@@ -84,4 +84,4 @@ class Factor15():
         return self.shor_subroutine(self.target, self.coprimes[i])
 
 test = Factor15(15)
-test.compute()
+print(test.compute())
