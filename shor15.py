@@ -1,3 +1,12 @@
+'''
+Reference:
+
+Qiskit, 2020. 11. Shor's algorithm II: From Factoring to Period-Finding, Writing the Quantum Program - Part 2. [video] Available at: <https://www.youtube.com/watch?v=dscRoTBPeso&t=1745s> [Accessed 2 October 2021].
+'''
+
+
+
+
 class Factor15():
     '''Class to implement the Shor algorithm (classicly) for the number 15.
 
