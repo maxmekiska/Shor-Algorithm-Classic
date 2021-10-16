@@ -33,6 +33,8 @@ class Factor15():
         self.target = target
         
         self.coprimes = []
+
+        self.factors = []
                 
     def __str__(self):
         '''Prints the co-prime list computed for the target value.'''
@@ -126,18 +128,38 @@ class Factor15():
         else:
             return 0
         
-    def compute(self):
+    def _apply(self, target):
         '''Method to apply the shor algorithm.
             
             Returns:
 
                 [int, int]: list containing the factors.
         '''
-        self.coprimes = self._co_primelist(self.target)
+        self.target = target
+        self.coprimes = self._co_primelist(target)
         i = 0
-        while self._shor_subroutine(self.target, self.coprimes[i]) == 0:
+        while self._shor_subroutine(target, self.coprimes[i]) == 0:
             i += 1
-        return self._shor_subroutine(self.target, self.coprimes[i])
+        return self._shor_subroutine(target, self.coprimes[i])
+
+
+    def compute(self):
+        '''
+        '''
+        self.factors.extend(self._apply(self.target))
+        i = 0
+        length_factors = len(self.factors)
+        while length_factors > i:
+            if self._is_prime(self.factors[i]) == False:
+                self.factors.extend(self._apply(self.factors[i]))
+                del(self.factors[i])
+                length_factors = len(self.factors)
+
+            i += 1 
+        
+        return self.factors
+
+
 
 test = Factor15(15)
 print(test.compute())
