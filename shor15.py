@@ -159,7 +159,6 @@ class Factor15():
         
         return self.factors
 
-
-
-test = Factor15(15)
-print(test.compute())
+if __name__ == "__main__":
+    test = Factor15(15)
+    print(test.compute())
