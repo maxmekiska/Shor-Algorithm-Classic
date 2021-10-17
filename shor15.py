@@ -8,7 +8,7 @@ Qiskit, 2020. 11. Shor's algorithm II: From Factoring to Period-Finding, Writing
 
 
 class Factor15():
-    '''Class to implement the Shor algorithm (classicly) for the number 15.
+    '''Class to implement the Shor algorithm (classicly). Tested on number 15.
 
     Methods
     -------
@@ -17,12 +17,14 @@ class Factor15():
         Private method to compute the greatest common divisor.
     _is_prime(self, target: int):
         Private method to test if a number is a prime.
-    _co_primelist(self, targer: int):
+    _co_primelist(self, target: int):
         Private method to create a list of co-prime numbers for a targer value.
     _shor_subroutine(self, target: int, coprime: int):
         Private method that implements a simplified version of the Shor algorithm.
+    _apply(self, target:int ):
+        Method to apply the shor algorithm.
     compute(self):
-        Method to execute the Shor algorithm.
+        Method to repeat shor algorithm calculations until no non-prime factors are left in the factor list.
     '''
         
     def __init__(self, target: int) -> object:
@@ -128,12 +130,12 @@ class Factor15():
         else:
             return 0
         
-    def _apply(self, target):
+    def _apply(self, target: int) -> int:
         '''Method to apply the shor algorithm.
             
             Returns:
 
-                [int, int]: list containing the factors.
+                [int, int]: list containing factors.
         '''
         self.target = target
         self.coprimes = self._co_primelist(target)
@@ -143,8 +145,11 @@ class Factor15():
         return self._shor_subroutine(target, self.coprimes[i])
 
 
-    def compute(self):
-        '''
+    def compute(self) -> int:
+        '''Method to repeat shor algorithm calculations until no non-prime factors are left in the factor list.
+
+            Returns:
+                [int, int]: list containing factors.
         '''
         self.factors.extend(self._apply(self.target))
         i = 0
